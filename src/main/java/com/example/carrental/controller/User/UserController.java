@@ -50,14 +50,4 @@ public class UserController {
     public void deleteUserById(@PathVariable String id) throws Exception{
         usersService.deleteUserById(id);
     }
-
-    @PutMapping(path = "/rentCar/{id}")
-    public void userRentCar(@RequestParam String userId, @RequestParam String carId) throws Exception{
-        usersService.rentCar(userId, carId);
-    }
-
-    @PutMapping(path ="/returnCar/{id}")
-    public void userReturnCar(@RequestParam String userId, @RequestParam String carId) throws Exception{
-        usersService.returnCar(userId,carId);
-    }
 }

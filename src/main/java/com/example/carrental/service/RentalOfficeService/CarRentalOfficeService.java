@@ -7,7 +7,6 @@ import com.example.carrental.domain.User.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 
 public interface CarRentalOfficeService {
@@ -16,9 +15,9 @@ public interface CarRentalOfficeService {
 
     List<CarRentalOffice> getAllCarRentalOffices();
 
-    CarRentalOffice getCarRentalOfficeByDateTime (LocalDateTime dateTime);
+    List<CarRentalOffice> getCarRentalOfficeByDateTime (LocalDateTime dateTime);
 
-    void rentACar(String userId, String carId) throws Exception;
+    boolean rentACar(String userId, String carId) throws Exception;
 
     void returnACar(String userId, String carId) throws Exception;
 
@@ -32,7 +31,7 @@ public interface CarRentalOfficeService {
 
     List<Car> filterCarsByMark(String mark);
 
-    User findUserByLogin(String login) throws Exception;
+    User findUserByUserLogin(String login) throws Exception;
 
     User findUserByEmail(String email);
 

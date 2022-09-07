@@ -65,6 +65,7 @@ public class UsersServiceImpl implements UsersService {
         return userRepository.findById(id);
     }
 
+
     @Override
     public void deleteUserById(String id) throws Exception {
         System.out.println("DELETING client by ID");

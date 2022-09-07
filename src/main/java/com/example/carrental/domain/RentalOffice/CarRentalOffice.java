@@ -24,6 +24,8 @@ public class CarRentalOffice {
 
     private String carId;
 
-    private LocalDateTime localDateTime;
+    private LocalDateTime localDateTimeOfRent;
+
+    private LocalDateTime localDateTimeOfRetun;
 
 }
