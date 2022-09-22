@@ -19,11 +19,8 @@ public interface CarsService {
     Car getCarById(Long id) throws CarException;
 
     void deleteCarById(Long id) throws CarException;
-    List<Car> filterCarsByMark(String mark);
 
     List<Car> filterCarsByDayPrice(BigDecimal from, BigDecimal to);
-
-    List<Car> filterCarsByYearOfProduction(int yearOfProduction);
 
     List<Car> filterCarsByBodyType(String bodyType);
 

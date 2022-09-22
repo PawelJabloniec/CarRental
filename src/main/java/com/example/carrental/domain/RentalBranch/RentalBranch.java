@@ -20,7 +20,7 @@ public class RentalBranch {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "rentalBranchId")
+    @OneToMany(mappedBy = "rentalBranchId", cascade = CascadeType.ALL)
     private List<Car> cars = new ArrayList<>();
 
     private String city;

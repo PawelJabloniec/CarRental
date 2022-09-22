@@ -80,23 +80,9 @@ public class CarsServiceImpl implements CarsService {
     }
 
     @Override
-    public List<Car> filterCarsByYearOfProduction(int yearOfProduction) {
-        return carsRepository.findAll().stream()
-                .filter(car -> car.getYearOfProduction() == yearOfProduction)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<Car> filterCarsByDayPrice(BigDecimal from, BigDecimal to) {
         return carsRepository.findAll().stream()
                 .filter(car -> isInRange(car.getDayPrice(), from, to))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Car> filterCarsByMark(String mark) {
-        return carsRepository.findAll().stream()
-                .filter(car -> car.getMark().equals(mark))
                 .collect(Collectors.toList());
     }
 

@@ -77,7 +77,8 @@ public class CarsRentalOfficeImpl implements CarRentalOfficeService {
     @Transactional
     @Override
     public void returnACar(Long carRentalOfficeId) throws Exception {
-        changeCarStatusInCarAndUser(getCarRentalOfficeById(carRentalOfficeId).getUser().getId(), getCarRentalOfficeById(carRentalOfficeId).getCar().getId(), CarStatus.AVAILABLE);
+        changeCarStatusInCarAndUser(getCarRentalOfficeById(carRentalOfficeId).getUser().getId(),
+                getCarRentalOfficeById(carRentalOfficeId).getCar().getId(), CarStatus.AVAILABLE);
         updateCarRentalOffice(carRentalOfficeId);
     }
 
