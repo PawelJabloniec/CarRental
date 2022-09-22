@@ -100,5 +100,4 @@ public class CarsServiceImpl implements CarsService {
     private Car validCarId(Long id) throws CarException {
        return Optional.of(carsRepository.findCarById(id)).orElseThrow(() -> new CarException("Couldn't find specific id: " + id));
     }
-
 }

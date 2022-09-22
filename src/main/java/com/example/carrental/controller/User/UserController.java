@@ -27,12 +27,6 @@ public class UserController {
         return usersService.createUser(userDto);
     }
 
-    @PostMapping(path = "/log/in")
-    @ResponseStatus(HttpStatus.OK)
-    public CarRentalUser sendUser(@RequestBody @Valid @NotNull UserDto userDto){
-        return usersService.findUserByUserLogin(userDto.getUserLogin());
-    }
-
     @PutMapping(path = "/{id}")
     public void updateUser(@RequestBody UserDto userDto, @PathVariable Long id) throws Exception{
         usersService.updateUser(userDto, id);
@@ -49,11 +43,6 @@ public class UserController {
         return new ResponseEntity<>(usersService.getUserById(id),HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/{id}")
-    public void deleteUserById(@PathVariable Long id) throws Exception{
-        usersService.deleteUserById(id);
-    }
-
     @GetMapping(path="/userEmail/{email}")
     @ResponseStatus(HttpStatus.FOUND)
     public CarRentalUser findUserByEmail(@PathVariable String email){
@@ -66,4 +55,15 @@ public class UserController {
         return usersService.findUserByUserLogin(login);
     }
 
+    @DeleteMapping(path = "/{id}")
+    public void deleteUserById(@PathVariable Long id) throws Exception{
+        usersService.deleteUserById(id);
+    }
+
+
+    @PostMapping(path = "/log/in")
+    @ResponseStatus(HttpStatus.OK)
+    public CarRentalUser sendUser(@RequestBody @Valid @NotNull UserDto userDto){
+        return usersService.findUserByUserLogin(userDto.getUserLogin());
+    }
 }

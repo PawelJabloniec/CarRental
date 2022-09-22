@@ -60,12 +60,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void deleteUserById(Long id) {
-        CarRentalUser userById = getUserById(id);
-        userRepository.delete(userById);
-    }
-
-    @Override
     public CarRentalUser findUserByUserLogin(String login) throws UserException{
         return Optional.of(login)
                 .map(this::getUserByLogin)
@@ -79,6 +73,12 @@ public class UsersServiceImpl implements UsersService {
                 .orElseThrow(() -> new UserException("Not found User with given E-mail"));
     }
 
+    @Override
+    public void deleteUserById(Long id) {
+        CarRentalUser userById = getUserById(id);
+        userRepository.delete(userById);
+    }
+
     private CarRentalUser getUserByLogin(String login) throws UserException {
         return userRepository.findAll().stream()
                 .filter(user -> user.getUserLogin().equals(login))
@@ -90,5 +90,4 @@ public class UsersServiceImpl implements UsersService {
                 .filter(user -> user.getUserEMail().equals(email))
                 .findFirst().orElseThrow(() -> new UserException("Not found User with given E-mail"));
     }
-
 }

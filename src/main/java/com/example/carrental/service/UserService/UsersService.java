@@ -16,10 +16,10 @@ public interface UsersService {
 
     CarRentalUser getUserById(Long id);
 
-    void deleteUserById(Long id) throws Exception;
-
     CarRentalUser findUserByUserEmail(String email) throws UserException;
 
     CarRentalUser findUserByUserLogin(String login) throws UserException;
+
+    void deleteUserById(Long id) throws Exception;
 
 }
