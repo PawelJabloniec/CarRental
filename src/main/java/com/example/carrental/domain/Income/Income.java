@@ -2,10 +2,7 @@ package com.example.carrental.domain.Income;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -20,6 +17,7 @@ import java.time.LocalDateTime;
 public class Income {
 
     @Id
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

@@ -1,5 +1,6 @@
 package com.example.carrental.security;
 
+import com.example.carrental.config.ConfigUsers;
 import com.example.carrental.domain.User.CarRentalUser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,8 +17,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static InMemoryUserDetailsManager inMemoryUserDetailsManager;
 
-    public SecurityConfig() {
+    private ConfigUsers configUsers;
+
+    public SecurityConfig(ConfigUsers configUsers) {
         this.inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
+        this.configUsers = configUsers;
     }
 
     public static void addUserSecurity(CarRentalUser user){
@@ -30,26 +34,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService(){
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("user")
-                .roles("USER")
-                .build();
-        UserDetails admin = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("admin")
-                .roles("ADMIN")
-                .build();
-        UserDetails moderator = User.withDefaultPasswordEncoder()
-                .username("moderator")
-                .password("moderator")
-                .roles("MODERATOR")
-                .build();
-        inMemoryUserDetailsManager.createUser(admin);
-        inMemoryUserDetailsManager.createUser(user);
-        inMemoryUserDetailsManager.createUser(moderator);
+        for (ConfigUsers.User u: configUsers.getUser()) {
+            UserDetails user = User.withDefaultPasswordEncoder()
+                    .username(u.getName())
+                    .password(u.getPassword())
+                    .roles(u.getRole())
+                    .build();
+            inMemoryUserDetailsManager.createUser(user);
+        }
         return inMemoryUserDetailsManager;
-//        return new InMemoryUserDetailsManager(admin, user, moderator);
     }
 
     @Override
@@ -77,8 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/carRentalOffice").hasAnyRole("MODERATOR", "ADMIN")
                 .antMatchers(HttpMethod.GET,"/carRentalOffice/{id}").hasAnyRole("MODERATOR", "ADMIN")
                 .antMatchers(HttpMethod.GET,"/carRentalOffice/dateTime/{localDateTime}").hasAnyRole("MODERATOR", "ADMIN")
-                .antMatchers(HttpMethod.PUT,"/carRentalOffice/returnCar/{userId}").hasAnyRole("MODERATOR", "ADMIN", "USER")
-                .antMatchers(HttpMethod.PUT,"/carRentalOffice/rentCar/{userId}").hasAnyRole("MODERATOR", "ADMIN", "USER")
+                .antMatchers(HttpMethod.PUT,"/carRentalOffice/rentCar/{userId}/{carId}").hasAnyRole("MODERATOR", "ADMIN", "USER")
+                .antMatchers(HttpMethod.PUT,"/carRentalOffice/returnCar/{carRentalOfficeId}").hasAnyRole("MODERATOR", "ADMIN", "USER")
                 //Income permissions
                 .antMatchers(HttpMethod.GET,"/income").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/income/{id}").hasRole("ADMIN")
@@ -88,6 +81,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/rentalBranch/{id}").permitAll()
                 .antMatchers(HttpMethod.POST,"/rentalBranch").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/rentalBranch/{id}").hasRole("ADMIN")
+                //actuator
+                .antMatchers(HttpMethod.GET,"/actuator/**").hasRole("ADMIN")
 
                 .and()
                 .formLogin().permitAll()
