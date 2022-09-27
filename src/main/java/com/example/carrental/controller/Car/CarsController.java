@@ -7,6 +7,7 @@ import com.example.carrental.domainDto.CarDto.CarDto;
 import com.example.carrental.service.CarService.CarsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,12 +25,14 @@ public class CarsController {
         this.carsService = carsService;
     }
 
-    @PostMapping(path ="/{id}")
+    @Secured({"ROLE_MODERATOR", "ROLE_ADMIN"})
+    @PostMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Car createCar(@RequestBody @Valid CarDto carDto, @PathVariable Long id) {
         return carsService.createCar(carDto, id);
     }
 
+    @Secured({"ROLE_MODERATOR", "ROLE_ADMIN"})
     @PutMapping(path = "/{id}")
     public void updateCar(@RequestBody CarDto carDto, @PathVariable Long id) throws Exception {
         carsService.updateCar(carDto, id);
@@ -61,6 +64,7 @@ public class CarsController {
         return carsService.filterCarsByDayPrice(from, to);
     }
 
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteCar(@PathVariable Long id) throws CarException {

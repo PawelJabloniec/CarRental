@@ -13,6 +13,7 @@ import java.util.Arrays;
 
 @SpringBootApplication
 @EnableConfigurationProperties(ConfigUsers.class)
+
 public class CarRentalApplication {
 
     public static void main(String[] args) {
