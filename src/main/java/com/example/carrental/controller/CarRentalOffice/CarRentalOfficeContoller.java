@@ -40,8 +40,8 @@ public class CarRentalOfficeContoller {
     public List<CarRentalOffice> getCarRentalOfficeByDateTime(@PathVariable LocalDateTime localDateTime){
         return carRentalOfficeService.findCarRentalOfficeByLocalDateTimeOfRent(localDateTime);
     }
-    @PutMapping(path = "/rentCar/{userId}/{carId}")
-    public void userRentCar(@PathVariable Long userId, @PathVariable Long carId) throws Exception{
+    @PutMapping(path = "/rentCar")
+    public void userRentCar(@RequestParam(name="userId") Long userId, @RequestParam(name="carId") Long carId) throws Exception{
         carRentalOfficeService.rentACar(userId, carId);
     }
     @PutMapping(path ="/returnCar/{carRentalOfficeId}")

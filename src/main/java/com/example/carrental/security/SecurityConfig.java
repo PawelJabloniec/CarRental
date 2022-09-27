@@ -24,12 +24,10 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static InMemoryUserDetailsManager inMemoryUserDetailsManager;
     private ConfigUsers configUsers;
-
     public SecurityConfig(ConfigUsers configUsers) {
         this.inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
         this.configUsers = configUsers;
     }
-
     public static void addUserSecurity(CarRentalUser user) {
         inMemoryUserDetailsManager.createUser(User.withDefaultPasswordEncoder()
                 .username(user.getUserLogin())
@@ -37,7 +35,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles(user.getRole())
                 .build());
     }
-
     @Bean
     public UserDetailsService userDetailsService() {
         for (ConfigUsers.User u : configUsers.getUser()) {
@@ -50,7 +47,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }
         return inMemoryUserDetailsManager;
     }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().and().authorizeRequests()
