@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService(){
-        for (ConfigUsers.User u: configUsers.getUser()) {
+        for (ConfigUsers.User u : configUsers.getUser()) {
             UserDetails user = User.withDefaultPasswordEncoder()
                     .username(u.getName())
                     .password(u.getPassword())
