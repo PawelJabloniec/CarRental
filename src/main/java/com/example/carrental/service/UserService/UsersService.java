@@ -2,7 +2,7 @@ package com.example.carrental.service.UserService;
 
 import com.example.carrental.domain.User.CarRentalUser;
 import com.example.carrental.domain.User.UserException;
-import com.example.carrental.domainDto.UserDto.UserDto;
+import com.example.carrental.domainDto.UserDto;
 
 import java.util.List;
 

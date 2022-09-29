@@ -1,9 +1,9 @@
 package com.example.carrental;
 
 import com.example.carrental.domain.Car.CarStatus;
-import com.example.carrental.domainDto.CarDto.CarDto;
-import com.example.carrental.domainDto.RentalBranchDto.RentalBranchDto;
-import com.example.carrental.domainDto.UserDto.UserDto;
+import com.example.carrental.domainDto.CarDto;
+import com.example.carrental.domainDto.RentalBranchDto;
+import com.example.carrental.domainDto.UserDto;
 import com.example.carrental.service.CarService.CarsService;
 import com.example.carrental.service.RentalBranchService.RentalBranchService;
 import com.example.carrental.service.UserService.UsersService;

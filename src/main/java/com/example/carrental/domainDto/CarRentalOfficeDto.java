@@ -1,4 +1,4 @@
-package com.example.carrental.domainDto.RentalOffice;
+package com.example.carrental.domainDto;
 
 import com.example.carrental.domain.Car.Car;
 import com.example.carrental.domain.User.CarRentalUser;
@@ -15,10 +15,8 @@ import java.time.LocalDateTime;
 @Builder
 public class CarRentalOfficeDto {
 
-    @ManyToOne
     private CarRentalUser user;
 
-    @ManyToOne
     private Car car;
 
     private LocalDateTime localDateTimeOfRent;

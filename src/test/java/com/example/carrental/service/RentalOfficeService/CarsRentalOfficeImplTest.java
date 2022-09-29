@@ -97,14 +97,11 @@ class CarsRentalOfficeImplTest {
                 "Password","name","lastName","aa@op.pl","address",
                 carBelongToUserId,
                 "USER","ACTIVE"));
-
         //WHEN
         Exception exception = assertThrows(CarRentalOfficeException.class, () -> {
             carsRentalOfficeService.rentACar(userId, carThatUserWantToRent);
         });
-
         //THEN
-
         verify(userRepository,times(0)).save(Mockito.any());
         verify(carsRepository,times(0)).save(Mockito.any());
         verify(carsRentalOfficeRepository,times(0)).save(Mockito.any());

@@ -1,4 +1,4 @@
-package com.example.carrental.domainDto.UserDto;
+package com.example.carrental.domainDto;
 
 import lombok.*;
 

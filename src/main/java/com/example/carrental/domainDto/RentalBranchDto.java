@@ -1,4 +1,4 @@
-package com.example.carrental.domainDto.RentalBranchDto;
+package com.example.carrental.domainDto;
 
 import com.example.carrental.domain.Car.Car;
 import lombok.*;
@@ -13,6 +13,7 @@ import java.util.List;
 @EqualsAndHashCode
 @Builder
 public class RentalBranchDto {
+
     private List<Car> cars = new ArrayList<>();
 
     private String city;

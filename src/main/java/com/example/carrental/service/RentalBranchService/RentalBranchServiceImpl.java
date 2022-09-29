@@ -2,7 +2,7 @@ package com.example.carrental.service.RentalBranchService;
 
 import com.example.carrental.domain.Car.Car;
 import com.example.carrental.domain.RentalBranch.RentalBranch;
-import com.example.carrental.domainDto.RentalBranchDto.RentalBranchDto;
+import com.example.carrental.domainDto.RentalBranchDto;
 import com.example.carrental.repository.CarsRepository;
 import com.example.carrental.repository.RentalBranchRepository;
 import com.example.carrental.domain.RentalBranch.RentalBranchException;
@@ -56,7 +56,6 @@ public class RentalBranchServiceImpl implements RentalBranchService{
     public void deleteRentalBranch(Long id) throws Exception{
         validId(id);
         rentalBranchRepository.deleteById(id);
-//        carsRepository.findAll().stream().forEach(car -> car.getRentalBranchId() == );
     }
 
     private RentalBranch validId(Long id) throws Exception{

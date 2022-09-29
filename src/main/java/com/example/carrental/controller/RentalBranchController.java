@@ -1,7 +1,7 @@
-package com.example.carrental.controller.RentalBranchController;
+package com.example.carrental.controller;
 
 import com.example.carrental.domain.RentalBranch.RentalBranch;
-import com.example.carrental.domainDto.RentalBranchDto.RentalBranchDto;
+import com.example.carrental.domainDto.RentalBranchDto;
 import com.example.carrental.service.RentalBranchService.RentalBranchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;

@@ -1,9 +1,9 @@
-package com.example.carrental.controller.Car;
+package com.example.carrental.controller;
 
 import com.example.carrental.domain.Car.Car;
 import com.example.carrental.domain.Car.CarException;
 import com.example.carrental.domain.Car.CarStatus;
-import com.example.carrental.domainDto.CarDto.CarDto;
+import com.example.carrental.domainDto.CarDto;
 import com.example.carrental.service.CarService.CarsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +39,7 @@ public class CarsController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.FOUND)// nie korzysta się z tego w rest api
     public List<Car> getAllCars() {
         return carsService.getAllCars();
     }

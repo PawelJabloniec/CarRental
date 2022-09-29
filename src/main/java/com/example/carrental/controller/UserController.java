@@ -1,7 +1,7 @@
-package com.example.carrental.controller.User;
+package com.example.carrental.controller;
 
 import com.example.carrental.domain.User.CarRentalUser;
-import com.example.carrental.domainDto.UserDto.UserDto;
+import com.example.carrental.domainDto.UserDto;
 import com.example.carrental.service.UserService.UsersService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;

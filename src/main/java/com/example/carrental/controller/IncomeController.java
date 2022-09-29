@@ -1,4 +1,4 @@
-package com.example.carrental.controller.IncomeController;
+package com.example.carrental.controller;
 
 import com.example.carrental.domain.Income.Income;
 import com.example.carrental.domain.Income.IncomeException;

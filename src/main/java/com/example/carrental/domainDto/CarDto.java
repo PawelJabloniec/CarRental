@@ -1,9 +1,10 @@
-package com.example.carrental.domainDto.CarDto;
+package com.example.carrental.domainDto;
 
 import com.example.carrental.domain.Car.CarStatus;
 import lombok.*;
 
 import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -11,8 +12,9 @@ import java.math.BigDecimal;
 @EqualsAndHashCode
 @ToString
 @Builder
-public class CarDtoNoList {
-    private Long id;
+public class CarDto {
+
+    private Long rentalBranchId;
     private String mark;
     private String model;
     private String bodyType;
@@ -21,4 +23,7 @@ public class CarDtoNoList {
     private int run;
     private CarStatus carStatus;
     private BigDecimal dayPrice;
+
+
+
 }

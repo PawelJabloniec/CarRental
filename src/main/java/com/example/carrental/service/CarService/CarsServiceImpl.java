@@ -4,7 +4,7 @@ import com.example.carrental.domain.Car.Car;
 import com.example.carrental.domain.Car.CarException;
 import com.example.carrental.domain.Car.CarStatus;
 import com.example.carrental.domain.RentalBranch.RentalBranch;
-import com.example.carrental.domainDto.CarDto.CarDto;
+import com.example.carrental.domainDto.CarDto;
 import com.example.carrental.repository.CarsRepository;
 import com.example.carrental.repository.RentalBranchRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 @Slf4j
 @Service
-@Transactional
 public class CarsServiceImpl implements CarsService {
 
     private final CarsRepository carsRepository;
@@ -50,8 +49,18 @@ public class CarsServiceImpl implements CarsService {
     @Override
     public void updateCar(CarDto carDto, Long id) throws Exception{
         Car carToUpdate = getCarById(id);
-        Car car = new Car(carToUpdate.getId(), carDto.getRentalBranchId(), carDto.getMark(), carDto.getModel(), carDto.getBodyType(), carDto.getYearOfProduction(),
-                carDto.getColour(), carDto.getRun(), carDto.getCarStatus(), carDto.getDayPrice());
+        Car car = Car.builder()
+                .id(carToUpdate.getId())
+                .rentalBranchId(carDto.getRentalBranchId())
+                .mark(carDto.getMark())
+                .model(carDto.getModel())
+                .bodyType(carDto.getBodyType())
+                .yearOfProduction(carDto.getYearOfProduction())
+                .colour(carDto.getColour())
+                .run(carDto.getRun())
+                .carStatus(carDto.getCarStatus())
+                .dayPrice(carDto.getDayPrice())
+                .build();
         carsRepository.save(car);
     }
 

@@ -8,8 +8,8 @@ import com.example.carrental.domain.RentalOffice.CarRentalOffice;
 import com.example.carrental.domain.RentalOffice.CarRentalOfficeException;
 import com.example.carrental.domain.User.CarRentalUser;
 import com.example.carrental.domain.User.UserException;
-import com.example.carrental.domainDto.CarDto.CarDto;
-import com.example.carrental.domainDto.UserDto.UserDto;
+import com.example.carrental.domainDto.CarDto;
+import com.example.carrental.domainDto.UserDto;
 import com.example.carrental.repository.CarsRentalOfficeRepository;
 import com.example.carrental.repository.IncomeRepository;
 import com.example.carrental.service.CarService.CarsService;
@@ -74,7 +74,6 @@ public class CarsRentalOfficeImpl implements CarRentalOfficeService {
         createCarRentalOffice(userId, carId);
     }
 
-    @Transactional
     @Override
     public void returnACar(Long carRentalOfficeId) throws Exception {
         changeCarStatusInCarAndUser(getCarRentalOfficeById(carRentalOfficeId).getUser().getId(),
@@ -131,9 +130,17 @@ public class CarsRentalOfficeImpl implements CarRentalOfficeService {
     }
 
     private void updateCarStatus(Car carToRent, CarStatus carStatus) throws Exception {
-        carsService.updateCar(new CarDto(carToRent.getRentalBranchId(), carToRent.getMark(), carToRent.getModel(), carToRent.getBodyType(),
-                carToRent.getYearOfProduction(), carToRent.getColour(), carToRent.getRun(),
-                carStatus, carToRent.getDayPrice()), carToRent.getId());
+        carsService.updateCar(CarDto.builder()
+                .rentalBranchId(carToRent.getRentalBranchId())
+                .mark(carToRent.getMark())
+                .model(carToRent.getModel())
+                .bodyType(carToRent.getBodyType())
+                .yearOfProduction(carToRent.getYearOfProduction())
+                .colour(carToRent.getColour())
+                .run(carToRent.getRun())
+                .carStatus(carStatus)
+                .dayPrice(carToRent.getDayPrice())
+                .build(), carToRent.getId());
     }
 
     private Car getCarById(Long carId) throws CarException {

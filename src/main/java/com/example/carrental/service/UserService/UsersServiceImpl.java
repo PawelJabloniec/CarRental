@@ -2,7 +2,7 @@ package com.example.carrental.service.UserService;
 
 import com.example.carrental.domain.User.CarRentalUser;
 import com.example.carrental.domain.User.UserException;
-import com.example.carrental.domainDto.UserDto.UserDto;
+import com.example.carrental.domainDto.UserDto;
 import com.example.carrental.repository.UserRepository;
 import com.example.carrental.security.SecurityConfig;
 import org.springframework.stereotype.Service;
@@ -42,9 +42,18 @@ public class UsersServiceImpl implements UsersService {
     public void updateUser(UserDto userDto, Long id) throws Exception {
         CarRentalUser userToUpdate = getUserById(id);
 
-        userRepository.save(new CarRentalUser(userToUpdate.getId(), userDto.getUserLogin(), userDto.getUserPassword(),
-                userDto.getUserName(), userDto.getUserLastName(), userDto.getUserEMail(), userDto.getUserAddress(),
-                userDto.getUserCarId(), userDto.getRole(), userDto.getStatus()));
+        userRepository.save(CarRentalUser.builder()
+                .id(userToUpdate.getId())
+                .userLogin(userDto.getUserLogin())
+                .userPassword(userDto.getUserPassword())
+                .userName(userDto.getUserName())
+                .userLastName(userDto.getUserLastName())
+                .userEMail(userDto.getUserEMail())
+                .userAddress(userDto.getUserAddress())
+                .userCarId(userDto.getUserCarId())
+                .role(userDto.getRole())
+                .status(userDto.getStatus())
+                .build());
     }
 
     @Override

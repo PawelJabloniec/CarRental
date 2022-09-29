@@ -1,4 +1,4 @@
-package com.example.carrental.controller.CarRentalOffice;
+package com.example.carrental.controller;
 
 import com.example.carrental.domain.RentalOffice.CarRentalOffice;
 import com.example.carrental.service.RentalOfficeService.CarRentalOfficeService;
